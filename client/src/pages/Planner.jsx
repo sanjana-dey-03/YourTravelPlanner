@@ -310,19 +310,23 @@ function Planner() {
                     fontWeight: "bold",
                     background: "#c58b5c",
                     "&:hover": { background: "#b07647" },
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 1.2,
+                    minHeight: 48
                   }}
                 >
-                  {loading ? (
-                    <>
-                      <CircularProgress
-                        size={18}
-                        sx={{ color: "white", mr: 1 }}
-                      />
-                      Crafting your itinerary...
-                    </>
-                  ) : (
-                    "GENERATE ITINERARY"
+                  {loading && (
+                    <CircularProgress
+                      size={18}
+                      sx={{ color: "white" }}
+                    />
                   )}
+
+                  {loading
+                    ? "Crafting your itinerary..."
+                    : "GENERATE ITINERARY"}
                 </Button>
               </>
             )}
