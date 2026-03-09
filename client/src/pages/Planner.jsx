@@ -7,7 +7,6 @@ import {
   CircularProgress,
   Select,
   MenuItem,
-  InputLabel,
   FormControl,
   Chip,
 } from "@mui/material";
@@ -58,7 +57,11 @@ function Planner() {
 
       navigate(`/itinerary/${data.tripId}`);
     } catch (error) {
-      alert(error.response?.data?.message || error.message || "Failed to generate trip");
+      alert(
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to generate trip"
+      );
     } finally {
       setLoading(false);
     }
@@ -78,7 +81,13 @@ function Planner() {
         position: "relative",
       }}
     >
-      <Box sx={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(0,0,0,0.35)",
+        }}
+      />
 
       <form onSubmit={handleGenerate}>
         <Paper
@@ -112,15 +121,45 @@ function Planner() {
             {/* STEP 1 */}
             {step === 1 && (
               <>
-                <TextField label="Destination" name="destination" value={form.destination} onChange={handleChange} fullWidth required />
-                <TextField label="Number of Days" name="days" type="number" value={form.days} onChange={handleChange} fullWidth required />
-                <TextField label="Budget (₹)" name="budget" type="number" value={form.budget} onChange={handleChange} fullWidth required />
+                <TextField
+                  label="Destination"
+                  name="destination"
+                  value={form.destination}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                />
+
+                <TextField
+                  label="Number of Days"
+                  name="days"
+                  type="number"
+                  value={form.days}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                />
+
+                <TextField
+                  label="Budget (₹)"
+                  name="budget"
+                  type="number"
+                  value={form.budget}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                />
 
                 <Button
                   onClick={handleNext}
                   variant="contained"
                   size="large"
-                  sx={{ py: 1.4, fontWeight: "bold", background: "#c58b5c", "&:hover": { background: "#b07647" } }}
+                  sx={{
+                    py: 1.4,
+                    fontWeight: "bold",
+                    background: "#c58b5c",
+                    "&:hover": { background: "#b07647" },
+                  }}
                 >
                   NEXT
                 </Button>
@@ -132,11 +171,24 @@ function Planner() {
               <>
                 {/* Travel Style */}
                 <Box>
-                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: "#5a5a5a",
+                      mb: 0.7,
+                      ml: 0.5,
+                    }}
+                  >
                     Travel Style
                   </Typography>
+
                   <FormControl fullWidth size="small">
-                    <Select name="travelStyle" value={form.travelStyle} onChange={handleChange}>
+                    <Select
+                      name="travelStyle"
+                      value={form.travelStyle}
+                      onChange={handleChange}
+                    >
                       <MenuItem value="Relaxed">Relaxed</MenuItem>
                       <MenuItem value="Balanced">Balanced</MenuItem>
                       <MenuItem value="Packed">Packed</MenuItem>
@@ -146,12 +198,27 @@ function Planner() {
 
                 {/* Transport */}
                 <Box>
-                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: "#5a5a5a",
+                      mb: 0.7,
+                      ml: 0.5,
+                    }}
+                  >
                     Transport Mode
                   </Typography>
+
                   <FormControl fullWidth size="small">
-                    <Select name="transport" value={form.transport} onChange={handleChange}>
-                      <MenuItem value="Public">Public Transport</MenuItem>
+                    <Select
+                      name="transport"
+                      value={form.transport}
+                      onChange={handleChange}
+                    >
+                      <MenuItem value="Public">
+                        Public Transport (Metro/Bus)
+                      </MenuItem>
                       <MenuItem value="Cab">Cab / Auto</MenuItem>
                       <MenuItem value="Self-drive">Self Drive</MenuItem>
                     </Select>
@@ -160,11 +227,24 @@ function Planner() {
 
                 {/* Food */}
                 <Box>
-                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
+                  <Typography
+                    sx={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: "#5a5a5a",
+                      mb: 0.7,
+                      ml: 0.5,
+                    }}
+                  >
                     Food Preference
                   </Typography>
+
                   <FormControl fullWidth size="small">
-                    <Select name="food" value={form.food} onChange={handleChange}>
+                    <Select
+                      name="food"
+                      value={form.food}
+                      onChange={handleChange}
+                    >
                       <MenuItem value="Veg">Veg</MenuItem>
                       <MenuItem value="Non-veg">Non-veg</MenuItem>
                       <MenuItem value="Both">Both</MenuItem>
@@ -174,24 +254,44 @@ function Planner() {
 
                 {/* Interests */}
                 <Box>
-                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 1 }}>
+                  <Typography
+                    sx={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      color: "#5a5a5a",
+                      mb: 1,
+                    }}
+                  >
                     Interests
                   </Typography>
+
                   <Box display="flex" flexWrap="wrap" gap={1}>
-                    {["Nature","History","Food","Shopping","Nightlife","Adventure"].map((item) => (
+                    {[
+                      "Nature",
+                      "History",
+                      "Food",
+                      "Shopping",
+                      "Nightlife",
+                      "Adventure",
+                    ].map((item) => (
                       <Chip
                         key={item}
                         label={item}
                         clickable
                         sx={{
                           borderRadius: 3,
-                          background: form.interests.includes(item) ? "#c58b5c" : "#eeeeee",
-                          color: form.interests.includes(item) ? "white" : "#444",
+                          background: form.interests.includes(item)
+                            ? "#c58b5c"
+                            : "#eeeeee",
+                          color: form.interests.includes(item)
+                            ? "white"
+                            : "#444",
                         }}
                         onClick={() => {
                           const updated = form.interests.includes(item)
                             ? form.interests.filter((i) => i !== item)
                             : [...form.interests, item];
+
                           setForm({ ...form, interests: updated });
                         }}
                       />
@@ -199,32 +299,33 @@ function Planner() {
                   </Box>
                 </Box>
 
-                {/* GENERATING TEXT */}
-                {loading && (
-                  <Typography
-                    sx={{
-                      textAlign: "center",
-                      color: "#c58b5c",
-                      fontWeight: 600,
-                      fontSize: 14,
-                    }}
-                  >
-                    ✨ Crafting your itinerary...
-                  </Typography>
-                )}
-
+                {/* GENERATE BUTTON */}
                 <Button
                   type="submit"
                   variant="contained"
                   size="large"
                   disabled={loading}
-                  sx={{ py: 1.4, fontWeight: "bold", background: "#c58b5c", "&:hover": { background: "#b07647" } }}
+                  sx={{
+                    py: 1.4,
+                    fontWeight: "bold",
+                    background: "#c58b5c",
+                    "&:hover": { background: "#b07647" },
+                  }}
                 >
-                  {loading ? <CircularProgress size={20} sx={{ color: "white" }} /> : "GENERATE ITINERARY"}
+                  {loading ? (
+                    <>
+                      <CircularProgress
+                        size={18}
+                        sx={{ color: "white", mr: 1 }}
+                      />
+                      Crafting your itinerary...
+                    </>
+                  ) : (
+                    "GENERATE ITINERARY"
+                  )}
                 </Button>
               </>
             )}
-
           </Box>
         </Paper>
       </form>
