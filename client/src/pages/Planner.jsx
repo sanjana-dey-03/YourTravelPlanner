@@ -95,17 +95,17 @@ function Planner() {
           }}
         >
           <Typography
-  variant="h5"
-  textAlign="center"
-  fontWeight={600}
-  sx={{
-    mb: 2.5,
-    letterSpacing: 0.3,
-    color: "#2b2b2b"
-  }}
->
-  {step === 1 ? "Plan Your Trip" : "Personalize Your Trip"}
-</Typography>
+            variant="h5"
+            textAlign="center"
+            fontWeight={600}
+            sx={{
+              mb: 2.5,
+              letterSpacing: 0.3,
+              color: "#2b2b2b",
+            }}
+          >
+            {step === 1 ? "Plan Your Trip" : "Personalize Your Trip"}
+          </Typography>
 
           <Box display="flex" flexDirection="column" gap={3}>
 
@@ -128,124 +128,102 @@ function Planner() {
             )}
 
             {/* STEP 2 */}
-{step === 2 && (
-  <>
-    {/* Travel Style */}
-    <Box>
-      <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
-        Travel Style
-      </Typography>
-      <FormControl fullWidth size="small">
-        <Select
-          name="travelStyle"
-          value={form.travelStyle}
-          onChange={handleChange}
-          sx={{
-            borderRadius: 3,
-            background: "#fafafa",
-            "& .MuiOutlinedInput-notchedOutline": { borderColor: "#e0e0e0" },
-            "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#c58b5c" },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#c58b5c" },
-          }}
-        >
-          <MenuItem value="Relaxed">Relaxed</MenuItem>
-          <MenuItem value="Balanced">Balanced</MenuItem>
-          <MenuItem value="Packed">Packed</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+            {step === 2 && (
+              <>
+                {/* Travel Style */}
+                <Box>
+                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
+                    Travel Style
+                  </Typography>
+                  <FormControl fullWidth size="small">
+                    <Select name="travelStyle" value={form.travelStyle} onChange={handleChange}>
+                      <MenuItem value="Relaxed">Relaxed</MenuItem>
+                      <MenuItem value="Balanced">Balanced</MenuItem>
+                      <MenuItem value="Packed">Packed</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
 
-    {/* Transport */}
-    <Box>
-      <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
-        Transport Mode
-      </Typography>
-      <FormControl fullWidth size="small">
-        <Select
-          name="transport"
-          value={form.transport}
-          onChange={handleChange}
-          sx={{
-            borderRadius: 3,
-            background: "#fafafa",
-            "& .MuiOutlinedInput-notchedOutline": { borderColor: "#e0e0e0" },
-            "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#c58b5c" },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#c58b5c" },
-          }}
-        >
-          <MenuItem value="Public">Public Transport (Metro/Bus)</MenuItem>
-          <MenuItem value="Cab">Cab / Auto</MenuItem>
-          <MenuItem value="Self-drive">Self Drive</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+                {/* Transport */}
+                <Box>
+                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
+                    Transport Mode
+                  </Typography>
+                  <FormControl fullWidth size="small">
+                    <Select name="transport" value={form.transport} onChange={handleChange}>
+                      <MenuItem value="Public">Public Transport</MenuItem>
+                      <MenuItem value="Cab">Cab / Auto</MenuItem>
+                      <MenuItem value="Self-drive">Self Drive</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
 
-    {/* Food */}
-    <Box>
-      <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
-        Food Preference
-      </Typography>
-      <FormControl fullWidth size="small">
-        <Select
-          name="food"
-          value={form.food}
-          onChange={handleChange}
-          sx={{
-            borderRadius: 3,
-            background: "#fafafa",
-            "& .MuiOutlinedInput-notchedOutline": { borderColor: "#e0e0e0" },
-            "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: "#c58b5c" },
-            "&.Mui-focused .MuiOutlinedInput-notchedOutline": { borderColor: "#c58b5c" },
-          }}
-        >
-          <MenuItem value="Veg">Veg</MenuItem>
-          <MenuItem value="Non-veg">Non-veg</MenuItem>
-          <MenuItem value="Both">Both</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+                {/* Food */}
+                <Box>
+                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 0.7, ml: 0.5 }}>
+                    Food Preference
+                  </Typography>
+                  <FormControl fullWidth size="small">
+                    <Select name="food" value={form.food} onChange={handleChange}>
+                      <MenuItem value="Veg">Veg</MenuItem>
+                      <MenuItem value="Non-veg">Non-veg</MenuItem>
+                      <MenuItem value="Both">Both</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
 
-    {/* Interests */}
-    <Box>
-      <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 1 }}>
-        Interests
-      </Typography>
-      <Box display="flex" flexWrap="wrap" gap={1}>
-        {["Nature","History","Food","Shopping","Nightlife","Adventure"].map((item) => (
-          <Chip
-            key={item}
-            label={item}
-            clickable
-            sx={{
-              borderRadius: 3,
-              background: form.interests.includes(item) ? "#c58b5c" : "#eeeeee",
-              color: form.interests.includes(item) ? "white" : "#444",
-              "&:hover": {
-                background: form.interests.includes(item) ? "#b07647" : "#e0e0e0",
-              },
-            }}
-            onClick={() => {
-              const updated = form.interests.includes(item)
-                ? form.interests.filter((i) => i !== item)
-                : [...form.interests, item];
-              setForm({ ...form, interests: updated });
-            }}
-          />
-        ))}
-      </Box>
-    </Box>
+                {/* Interests */}
+                <Box>
+                  <Typography sx={{ fontSize: 14, fontWeight: 600, color: "#5a5a5a", mb: 1 }}>
+                    Interests
+                  </Typography>
+                  <Box display="flex" flexWrap="wrap" gap={1}>
+                    {["Nature","History","Food","Shopping","Nightlife","Adventure"].map((item) => (
+                      <Chip
+                        key={item}
+                        label={item}
+                        clickable
+                        sx={{
+                          borderRadius: 3,
+                          background: form.interests.includes(item) ? "#c58b5c" : "#eeeeee",
+                          color: form.interests.includes(item) ? "white" : "#444",
+                        }}
+                        onClick={() => {
+                          const updated = form.interests.includes(item)
+                            ? form.interests.filter((i) => i !== item)
+                            : [...form.interests, item];
+                          setForm({ ...form, interests: updated });
+                        }}
+                      />
+                    ))}
+                  </Box>
+                </Box>
 
-    <Button
-      type="submit"
-      variant="contained"
-      size="large"
-      disabled={loading}
-      sx={{ py: 1.4, fontWeight: "bold", background: "#c58b5c", "&:hover": { background: "#b07647" } }}
-    >
-      {loading ? <CircularProgress size={20} sx={{ color: "white" }} /> : "GENERATE ITINERARY"}
-    </Button>
-  </>
-)}
+                {/* GENERATING TEXT */}
+                {loading && (
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      color: "#c58b5c",
+                      fontWeight: 600,
+                      fontSize: 14,
+                    }}
+                  >
+                    ✨ Crafting your itinerary...
+                  </Typography>
+                )}
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  size="large"
+                  disabled={loading}
+                  sx={{ py: 1.4, fontWeight: "bold", background: "#c58b5c", "&:hover": { background: "#b07647" } }}
+                >
+                  {loading ? <CircularProgress size={20} sx={{ color: "white" }} /> : "GENERATE ITINERARY"}
+                </Button>
+              </>
+            )}
 
           </Box>
         </Paper>
